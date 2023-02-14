@@ -124,3 +124,14 @@ SELECT DATEDIFF(NOW(), '2023-02-14');
 -- TIMESTAMPDIFF연,분기 등 차이
 SELECT TIMESTAMPDIFF(MONTH, NOW(), '2023-05-05');
 
+-- date_add(date, interval, expr unit) 날짜 더하기
+SELECT date_add(now(), INTERVAL 1 day);
+
+-- DATE_SUB 데이터 빼기
+SELECT DATE_SUB(NOW(), INTERVAL 1 MONTH);
+
+-- LAST_DAT(D) 해당 달의 마지막 날 반환
+SELECT NOW() TODAY, LAST_DAY('2023-03-01') FROM DUAL;
+
+-- ROUND(D[F,])
+SELECT DATE_FORMAT(NOW(), '%Y %m %e') FROM DUAL;
