@@ -1,4 +1,4 @@
--- 카테고리 별 상품 개수 구하기
+-- 카테고리 별 상품 개수 구하기 ⭐
 -- 코드를 입력하세요
 SELECT SUBSTR(PRODUCT_CODE,0, 2) CATEGORY, COUNT(PRODUCT_CODE)
 FROM PRODUCT
