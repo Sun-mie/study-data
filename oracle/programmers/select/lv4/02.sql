@@ -1,0 +1,33 @@
+--오프라인/온라인 판매 데이터 통합하기
+-- 코드를 입력하세요
+SELECT TO_CHAR(SALES_DATE, 'YYYY-MM-DD'), PRODUCT_ID, USER_ID, SALES_AMOUNT
+  FROM (SELECT SALES_DATE, 
+               PRODUCT_ID, 
+               USER_ID,
+               SALES_AMOUNT 
+          FROM ONLINE_SALE
+         UNION ALL 
+        SELECT SALES_DATE,
+               PRODUCT_ID, 
+               NULL USER_ID, 
+               SALES_AMOUNT 
+         FROM OFFLINE_SALE)
+ WHERE EXTRACT(YEAR FROM SALES_DATE) = 2022 AND EXTRACT(MONTH FROM SALES_DATE) = 03
+ORDER BY 1,2,3
+
+-- OR
+
+SELECT SALES_DATE, PRODUCT_ID, USER_ID, SALES_AMOUNT
+  FROM (SELECT TO_CHAR(SALES_DATE, 'YYYY-MM-DD') SALES_DATE, 
+               PRODUCT_ID, 
+               USER_ID,
+               SALES_AMOUNT 
+          FROM ONLINE_SALE
+         UNION ALL 
+        SELECT TO_CHAR(SALES_DATE, 'YYYY-MM-DD') SALES_DATE,
+               PRODUCT_ID, 
+               NULL USER_ID, 
+               SALES_AMOUNT 
+         FROM OFFLINE_SALE)
+ WHERE SALES_DATE LIKE '2022-03%'
+ORDER BY 1, 2, 3
